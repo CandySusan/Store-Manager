@@ -8,7 +8,9 @@ install:
  
 
 script:
- - pytest --cov=tests
+
+ - coverage report
+ - py.test --cov-config .coverage --cov=api_endpoints
 
 after_script:
  - coveralls
