@@ -23,7 +23,7 @@ class TestApi(unittest.TestCase):
 
         response = self.client.post(
             self.hostname+'products', data=json.dumps(products))
-        # print(response)
+        
         self.assertEqual(response.status_code, 201)
 
     def test_get_a_product(self):
@@ -39,7 +39,7 @@ class TestApi(unittest.TestCase):
 
         response = self.client.post(
             self.hostname+'sales', content_type='application/json', data=json.dumps(sales))
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 201)
 
     def test_get_all_sales(self):
         response = self.client.get(self.hostname + 'sales')
