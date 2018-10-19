@@ -5,13 +5,13 @@ python:
 
 install:
  - pip install -r requirements.txt
- 
+ - pip install pytest-cov
 
 script:
 
- - coverage report
- - py.test --cov-config .coverage --cov=api_endpoints
+
+ - py.test --cov=api_endpoints
 
 after_script:
  - coveralls
- - pytest
+ 
