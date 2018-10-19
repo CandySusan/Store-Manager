@@ -8,28 +8,28 @@ app = Flask(__name__)
 
 @app.route('/api/v1/products', methods=["POST"])
 def add_product_endpoint():
-    request_data = request.get_json()
-    product = Product(request_data['item'], request_data['price'])
+    request_data = json.loads(request.data)
+    product = Product(request_data['product_name'], request_data['product_price'])
     product_list = product.add_product()
-    return jsonify({"products": product_list})
+    return jsonify({"products": product_list}), 201
 
 # GET all products
 
 
-@app.route('/api/v1/products/<int:product_id>')
-def get_product(product_id):
+@app.route('/api/v1/products/<int:productId>')
+def get_product(productId):
     for product in product_inventory:
-        if product["product_id"] == product_id:
+        if product["productId"] == productId:
             return jsonify(product)
 
-    return jsonify({"message": "product not found"})
+    return jsonify({"message": "product not found"}),200
 
 # GET all products
 
 
 @app.route('/api/v1/products', methods=["GET"])
 def get__all_products():
-    return jsonify({"product_inventory": product_inventory})
+    return jsonify({"product_inventory": product_inventory}),200
 
 # # POST /add_sale_order
 
@@ -39,7 +39,7 @@ def add_sale_endpoint():
     data = request.get_json()
     sale = Sale(data['item'], data['price'])
     sale_list = sale.add_sale()
-    return jsonify({"sales": sale_list})
+    return jsonify({"sales": sale_list}),201
 
 
 # GET specific sale
@@ -48,10 +48,10 @@ def get_sale(sale_id):
     for sale in sales_order:
         if sale["sale_id"] == sale_id:
             return jsonify(sale)
-    return jsonify({"message": "Sale order not found"})
+    return jsonify({"message": "Sale order not found"}),200
 
 
 # GET  all sales
 @app.route('/api/v1/sales', methods=['GET'])
 def get_all_sales():
-    return jsonify({"sale_order": sales_order})
+    return jsonify({"sale_order": sales_order}),200
