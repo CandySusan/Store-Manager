@@ -47,6 +47,3 @@ class TestApi(unittest.TestCase):
     def test_get_a_sale(self):
         response = self.client.get(self.hostname+'sales/1')
         self.assertEqual(response.status_code, 200)
-
-    if __name__ == '__main__':
-        unittest.main()
