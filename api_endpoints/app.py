@@ -10,17 +10,17 @@ app = Flask(__name__)
 def add_product_endpoint():
     request_data = json.loads(request.data)
     product = Product(request_data['product_name'], request_data['product_price'])
-    product_list = product.add_product()
-    return jsonify({"products": product_list}), 201
+    product.add_product()
+    return jsonify({"message" : "successfully added product with id"}), 201
 
 # GET all products
 
 
-@app.route('/api/v1/products/<int:productId>')
-def get_product(productId):
+@app.route('/api/v1/products/<int:product_id>',methods=["GET"])
+def get_product(product_id):
     for product in product_inventory:
-        if product["productId"] == productId:
-            return jsonify(product)
+        if product.product_id == product_id:
+            return jsonify(product.to_json())
 
     return jsonify({"message": "product not found"}),200
 
@@ -29,7 +29,11 @@ def get_product(productId):
 
 @app.route('/api/v1/products', methods=["GET"])
 def get__all_products():
-    return jsonify({"product_inventory": product_inventory}),200
+    response_list = []
+    for product in product_inventory:
+        response_list.append(product.to_json())
+
+    return jsonify({"product_inventory": response_list}),200
 
 # # POST /add_sale_order
 
