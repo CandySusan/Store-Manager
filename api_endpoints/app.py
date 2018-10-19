@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request, Response
 import json
 from api_endpoints.products import Product, get_product_inventory, product_inventory
 from api_endpoints.sales import Sale, sales_order
+
 app = Flask(__name__)
 
 
@@ -35,8 +36,8 @@ def get__all_products():
 
 @app.route('/api/v1/sales', methods=["POST"])
 def add_sale_endpoint():
-    request_data = request.get_json()
-    sale = Sale(request_data['item'], request_data['price'])
+    data = request.get_json()
+    sale = Sale(data['item'], data['price'])
     sale_list = sale.add_sale()
     return jsonify({"sales": sale_list})
 
@@ -54,6 +55,3 @@ def get_sale(sale_id):
 @app.route('/api/v1/sales', methods=['GET'])
 def get_all_sales():
     return jsonify({"sale_order": sales_order})
-
-
-
