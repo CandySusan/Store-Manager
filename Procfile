@@ -1,1 +1,1 @@
-web: gunicorn --workers=1 api_endpoints:app
+web: gunicorn --workers=1 run:app
