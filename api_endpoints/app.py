@@ -50,10 +50,10 @@ def add_sale_endpoint():
 # GET specific sale
 @app.route('/api/v1/sales/<int:sale_id>', methods=["GET"])
 def get_sale(sale_id):
+    sales_list = []
     for sale in sales_order:
-        if sale["sale_id"] == sale_id:
-            return jsonify(sale)
-    return jsonify({"message": "Sale order not found"}), 200
+        sales_list.append(sale.to_json)
+    return jsonify({"sales_order": sales_list}), 200
 
 
 # GET  all sales
