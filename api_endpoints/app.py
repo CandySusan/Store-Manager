@@ -2,8 +2,35 @@ from flask import Flask, jsonify, request, Response
 import json
 from api_endpoints.products import Product, get_product_inventory, product_inventory
 from api_endpoints.sales import Sale, sales_order
+from flask_httpauth import HTTPBasicAuth
+
 
 app = Flask(__name__)
+auth = HTTPBasicAuth()
+
+
+@auth.get_password
+def get_password(Admin):
+
+    if Admin == "Candy":
+        return 1234
+    return None
+
+
+@auth.error_handler
+def unauthorized():
+    return jsonify({"error": "Unauthorised User!!"}), 401
+
+
+@app.errorhandler(404)
+def not_found(error):
+    """ Return an error """
+    return jsonify({"error": "Not Found"}), 404
+
+
+@app.route('/', methods=["GET"])
+def home():
+    return("Hello there! Welcome to StoreManager")
 
 
 @app.route('/api/v1/products', methods=["POST"])
@@ -13,6 +40,7 @@ def add_product_endpoint():
                       request_data['product_price'])
     product.add_product()
     return jsonify({"message": "successfully added product with id"}), 201
+
 
 # GET all products
 
@@ -25,16 +53,19 @@ def get_product(product_id):
 
     return jsonify({"message": "product not found"}), 200
 
+
 # GET all products
 
 
 @app.route('/api/v1/products', methods=["GET"])
+@auth.login_required
 def get__all_products():
     response_list = []
     for product in product_inventory:
         response_list.append(product.to_json())
 
     return jsonify({"product_inventory": response_list}), 200
+
 
 # # POST /add_sale_order
 

@@ -23,5 +23,6 @@ class Sale():
 
         return Sale_json
 
-    def get_sales_order(self):
-        return sales_order
+
+def get_sales_order():
+    return sales_order
