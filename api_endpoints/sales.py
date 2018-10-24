@@ -6,14 +6,23 @@ class Sale():
 
         self.item = item
         self.price = price
+        self.sale_id = len(sales_order) + 1
 
     def add_sale(self):
-        Sales = {
-            "sale_id": len(sales_order)+1,
+        sales_order.append(self)
+        return sales_order
+
+    def to_json(self):
+
+        Sale_json = {
+            "sale_id": self.sale_id,
             "item": self.item,
             "price": self.price
 
         }
 
-        sales_order.append(Sales)
-        return sales_order
+        return Sale_json
+
+
+def get_sales_order():
+    return sales_order
