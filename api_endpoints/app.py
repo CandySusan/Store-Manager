@@ -8,6 +8,14 @@ from flask_httpauth import HTTPBasicAuth
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
+users = [
+    {
+        "username": "candy",
+        "password": "1234",
+        "logged_in": False
+    }
+]
+
 
 @auth.get_password
 def get_password(Admin):
@@ -91,3 +99,12 @@ def get_sale(sale_id):
 @app.route('/api/v1/sales', methods=['GET'])
 def get_all_sales():
     return jsonify({"sale_order": sales_order}), 200
+
+
+@app.route('/login', methods=["POST"])
+def login(username, password):
+    for user in users:
+        if user["username"] == "candy" and user["password"] == "1234":
+            user["logged_in"] = True
+            return user
+    return None
