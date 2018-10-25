@@ -54,6 +54,7 @@ def unauthorized():
 def not_found(error):
     """ Return an error """
     return jsonify({"error": "Not Found"}), 404
+# Add a product
 
 
 @app.route('/api/v1/products', methods=["POST"])
@@ -65,7 +66,7 @@ def add_product_endpoint():
     return jsonify({"message": "successfully added product with id"}), 201
 
 
-# GET all products
+# GET specific product by id
 
 
 @app.route('/api/v1/products/<int:product_id>', methods=["GET"])
@@ -81,7 +82,7 @@ def get_product(product_id):
 
 
 @app.route('/api/v1/products', methods=["GET"])
-@auth.login_required
+# @auth.login_required
 def get__all_products():
     response_list = []
     for product in product_inventory:
@@ -90,7 +91,7 @@ def get__all_products():
     return jsonify({"product_inventory": response_list}), 200
 
 
-# # POST /add_sale_order
+# POST /add_sale_order
 
 
 @app.route('/api/v1/sales', methods=["POST"])
@@ -104,16 +105,20 @@ def add_sale_endpoint():
 # GET specific sale
 @app.route('/api/v1/sales/<int:sale_id>', methods=["GET"])
 def get_sale(sale_id):
-    sales_list = []
     for sale in sales_order:
-        sales_list.append(sale.to_json)
-    return jsonify({"sales_order": sales_list}), 200
+        if sale.sale_id == sale_id:
+            return jsonify(sale.to_json())
+
+    return jsonify({"message": "Sales order not found"}), 200
 
 
 # GET  all sales
 @app.route('/api/v1/sales', methods=['GET'])
 def get_all_sales():
-    return jsonify({"sale_order": sales_order}), 200
+    sales_list = []
+    for sale in sales_order:
+        sales_list.append(sale.to_json())
+    return jsonify({"sales_order": sales_list}), 200
 
 
 @app.route('/api/v1/login', methods=["POST"])
