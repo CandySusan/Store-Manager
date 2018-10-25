@@ -1,20 +1,40 @@
 from flask import Flask, jsonify, request, Response
 import json
-from api_endpoints.products import Product, get_product_inventory, product_inventory
+from api_endpoints.products import Product, get_product_inventory, product_inventory, Login
 from api_endpoints.sales import Sale, sales_order
 from flask_httpauth import HTTPBasicAuth
 
 
 app = Flask(__name__)
 auth = HTTPBasicAuth()
+users = []
 
-users = [
-    {
-        "username": "candy",
-        "password": "1234",
-        "logged_in": False
-    }
-]
+
+@app.route('/')
+def store_manager():
+
+    return json.dumps({"users": users, "status": True})
+
+
+@app.route('/api/v1/users', methods=["POST"])
+def add_users():
+    data = request.json
+    users.append(data)
+    return json.dumps({"message": "user added"}), 201
+
+
+@app.route('/api/v1/users/<int:uid>', methods=["put"])
+def update_users(uid):
+    data = request.json
+    # user = [user for user in users if user["id"] == uid][0]
+    user_obj = None
+    for user in users:
+        if user["uid"] == uid:
+            user = user
+            index = user_obj.index(user)
+
+            users.insert(index, user.update(**data))
+    return json.dumps({"message": "user added"}), 202
 
 
 @auth.get_password
@@ -34,11 +54,6 @@ def unauthorized():
 def not_found(error):
     """ Return an error """
     return jsonify({"error": "Not Found"}), 404
-
-
-@app.route('/', methods=["GET"])
-def home():
-    return("Hello there! Welcome to StoreManager")
 
 
 @app.route('/api/v1/products', methods=["POST"])
@@ -101,10 +116,11 @@ def get_all_sales():
     return jsonify({"sale_order": sales_order}), 200
 
 
-@app.route('/login', methods=["POST"])
-def login(username, password):
-    for user in users:
-        if user["username"] == "candy" and user["password"] == "1234":
-            user["logged_in"] = True
-            return user
-    return None
+@app.route('/api/v1/login', methods=["POST"])
+def login():
+
+    user = json.loads(request.data)
+    users = Login(user['username'],
+                  user['password'])
+    users.add_username()
+    return jsonify({"message": "successfully logged in"}), 201

@@ -29,23 +29,30 @@ def get_product_inventory():
     return product_inventory
 
 
-class StoreUser:
+users = []
 
+
+class Login():
     def __init__(self, username, password):
+
         self.username = username
         self.password = password
 
+    def add_username(self):
+        users.append(self)
 
-class Admin(StoreUser):
-    def __init__(self, username, password, Admin_username, Admin_password):
-        super(Admin, self).__init__(username, password)
-        self.Admin_username = Admin_username
-        self.Admin_password = Admin_password
+        return users
+
+    def to_user_json(self):
+
+        users_json = {
+            "username": self.username,
+            "password": self.password,
+            "logged_in": False
+        }
+
+        return users_json
 
 
-class StoreAttendant(StoreUser):
-    def __init__(self, username, password, Attendant_username, Attendant_password):
-        super(StoreAttendant, self).__init__(
-            Attendant_username, Attendant_password)
-        self.Attendant_username = Attendant_username
-        self.Attendant_password = Attendant_password
+def get_users():
+    return users

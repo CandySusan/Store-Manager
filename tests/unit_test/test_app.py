@@ -111,3 +111,9 @@ class TestApi(unittest.TestCase):
         response = self.client.get(
             self.hostname+'login', data=json.dumps(login))
         self.assertEqual(response.status_code, 404)
+
+    def user_cannot_login(self, username, password):
+        pass
+
+    def tearDown(self):
+        pass
