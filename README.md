@@ -6,9 +6,10 @@
 API endpoints
 **************************************************
 
-Create a set of API endpoints already defined that use data structures to store data in memory.
+This include a set of API endpoints already defined that use data structures to store data in memory.
 No database was used.
 
 My heroku isn't found because i haven't added a route for displaying anything on the route but if i add my endpoints..
 ```https://store-manager-candy.herokuapp.com/api/v1/products```
-it shows output
+it shows output 
+
