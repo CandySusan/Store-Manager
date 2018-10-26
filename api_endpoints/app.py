@@ -124,6 +124,7 @@ def get_all_sales():
 @app.route('/api/v1/login', methods=["POST"])
 def login():
 
+
     user = json.loads(request.data)
     users = Login(user['username'],
                   user['password'])
