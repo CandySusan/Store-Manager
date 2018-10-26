@@ -24,7 +24,8 @@ class TestApi(unittest.TestCase):
         products = {
 
             "product_name": "sandals",
-            "product_price": 15.99
+            "product_price": 15.99,
+            "quantity": 6
         }
 
         response = self.client.post(
@@ -43,6 +44,7 @@ class TestApi(unittest.TestCase):
             "product_name": "car",
             "product_price": 600,
 
+
         }
 
         result = self.client.delete(
@@ -59,7 +61,8 @@ class TestApi(unittest.TestCase):
         sales = {
 
             "item": "boots",
-            "price": 15.99
+            "price": 15.99,
+            "quantity": 2
         }
 
         response = self.client.post(
