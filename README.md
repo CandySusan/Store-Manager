@@ -29,16 +29,16 @@ GET /sales	Get all available sale records
 GET /sale/saleId	Get a specific sale record given its ID
 
 Installation & Requirements;
-*******************************************************
-Python
 
-Flask (Python web framework)The following packages are optional:
+- Python
 
-Markdown (optional) - Markdown support for the browsable API. 
+- Flask (Python web framework)The following packages are optional:
 
-Pytest[Testing Framework]
+- Markdown (optional) - Markdown support for the browsable API. 
 
-Install using pip: pip install Flask 
+- Pytest[Testing Framework]
+
+- Install using pip: pip install Flask 
 
 Import and initialization of my application:
 *********************************************
@@ -63,6 +63,7 @@ Deployment
 My app endpoints is hosted on heroku [https://store-manager-candy.herokuapp.com]
 
 An example on how to Use the endpoints
+
 ******************************************************************
 Creat a new product
 
@@ -76,15 +77,20 @@ Get all available Products
 Perform a GET request on [https://store-manager-candy.herokuapp.com/api/v1/products]
 
 Get a specific product by product_id
-
 Perform a GET request and add product_id as shown [https://store-manager-candy.herokuapp.com/api/v1/products/2]
-
 Note:
 - Product_id is an integer and not a string so error message will be returned if string is entered instead.
 
 Acknowledgments
+
 - Used this URL as a guideline to build the api endpoints [http://flask.pocoo.org/]
 - Also used Stackoverflow to guide during building of api endpoints
+
+Acknowledgments
+
+- Used this URL as a guideline to build the api endpoints [http://flask.pocoo.org/]
+- Also used Stackoverflow to guide during building of api endpoints
+
 
 Authors
 
