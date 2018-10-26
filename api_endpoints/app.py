@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, Response
 import json
 from api_endpoints.products import Product, get_product_inventory, product_inventory, Login
 from api_endpoints.sales import Sale, sales_order
-from flask_httpauth import HTTPBasicAuth
+from Flask_httpauth import HTTPBasicAuth
 
 
 app = Flask(__name__)
