@@ -49,7 +49,7 @@ from flask import Flask
 app = Flask(__name__)
 
 Setup Development Environment 
-*********************************************************
+
 Install Python
 Install Pip
 Install VirtualEnv
