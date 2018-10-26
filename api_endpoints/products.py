@@ -7,9 +7,10 @@ class Product():
         self.product_name = product_name
         self.product_price = product_price
         self.product_id = len(product_inventory) + 1
+        self.quantity = 10
 
-    def add_product(self):
-        product_inventory.append(self)
+    def add_product(self, product):
+        product_inventory.append(product)
 
         return product_inventory
 
@@ -18,7 +19,8 @@ class Product():
         product_json = {
             "product_id": self.product_id,
             "product_name": self.product_name,
-            "product_price": self.product_price
+            "product_price": self.product_price,
+            "quantity": self.quantity
 
         }
 
