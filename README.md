@@ -20,7 +20,7 @@ To run the project Locally, clone [https://github.com/CandySusan/Store-Manager/t
 . To access and use the application's endpoints on Postman, Use the following URL [https://store-manager-candy.herokuapp.com/]
 
 Application Features
-*****************************************************
+
 EndPoint	Function
 POST /products	Create a new product
 GET /products	Get all availabe products
@@ -49,46 +49,43 @@ from flask import Flask
 app = Flask(__name__)
 
 Setup Development Environment 
-*********************************************************
+
 Install Python
 Install Pip
 Install VirtualEnv
 
 Running the tests
-******************
+
 - Run pytest on the terminal to check for errors
 - And also use the profeesional tool postman
 
 Deployment
-**********
-My api endpoints is hosted on heroku [https://store-manager-candy.herokuapp.com]
+
+My app endpoints is hosted on heroku [https://store-manager-candy.herokuapp.com]
 
 An example on how to Use the endpoints
 ******************************************************************
 Creat a new product
-************************
+
 Open postman and perform a POST request on [https://store-manager-candy.herokuapp.com/api/v1/products]
 Data should be in json format, e.g -{"product_id":1,"product_name":"bags","product_price":56,"quantity":10}  
-Note
-********
-All fields sould be filled for successful creation of a new product
+Note:
+- All fields sould be filled for successful creation of a new product
 
 Get all available Products
-***************************
+
 Perform a GET request on [https://store-manager-candy.herokuapp.com/api/v1/products]
 
 Get a specific product by product_id
-************************************
+
 Perform a GET request and add product_id as shown [https://store-manager-candy.herokuapp.com/api/v1/products/2]
 
-Note
-******
-Product_id is an integer and not a string so error message will be returned if string is entered instead.
+Note:
+- Product_id is an integer and not a string so error message will be returned if string is entered instead.
 
 Acknowledgments
-***************
-Used this URL as a guideline to build the api endpoints [http://flask.pocoo.org/]
-Also used Stackoverflow to guide during building of api endpoints
+- Used this URL as a guideline to build the api endpoints [http://flask.pocoo.org/]
+- Also used Stackoverflow to guide during building of api endpoints
 
 Authors
 Candy Susan
