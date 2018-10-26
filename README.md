@@ -1,5 +1,6 @@
 
 My Store Manager API endpoints
+**********************************************
 It includes a set of API endpoints already defined below and use data structures to store data in memory without using a database
 
 EndPoint	                               Function
