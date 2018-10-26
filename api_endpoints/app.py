@@ -13,7 +13,7 @@ users = []
 @app.route('/')
 def store_manager():
 
-    return json.dumps({"users": users, "status": True})
+    return "Hello, welcome to StoreManager!"
 
 
 @app.route('/api/v1/users', methods=["POST"])
@@ -62,7 +62,7 @@ def add_product_endpoint():
     request_data = json.loads(request.data)
     product = Product(request_data['product_name'],
                       request_data['product_price'])
-    product.add_product()
+    product.add_product(product)
     return jsonify({"message": "successfully added product with id"}), 201
 
 
@@ -97,8 +97,8 @@ def get__all_products():
 @app.route('/api/v1/sales', methods=["POST"])
 def add_sale_endpoint():
     data = json.loads(request.data)
-    sale = Sale(data['item'], data['price'])
-    sale.add_sale()
+    sale = Sale(data['item'], data['price'], data["quantity"])
+    sale.add_sale(sale)
     return jsonify({"message": "Succesfully added sales order"}), 201
 
 
